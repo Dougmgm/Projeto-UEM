@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/stylelogon.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0">
+    <title>Panel</title>
+</head>
+
+<body>
+    <main>
+        <section id="primSect">
+            <div id="primeiro" class="esquerda">
+                <span class="material-symbols-outlined">group_add</span> Clientes
+            </div>
+            
+            <div id="segundo" class="esquerda">
+                <span class="material-symbols-outlined">redeem</span> Produtos
+            </div>
+            
+            <div id="terceiro" class="esquerda">
+                <span class="material-symbols-outlined">shopping_cart</span> Pedidos
+            </div>
+
+            <div>
+
+                <button onclick="exportarClientesParaJSON()">Exportar Clientes para JSON</button>
+    
+            </div>
+        </section>
+        
+
+        <div class="direita">            
+            <form id="formClientes" style="display: none;">
+                <fieldset> 
+                    <legend class="topoCli">
+                        <strong class="sobrelinha">Clientes</strong>
+                        <button id="sairClientes" type="button" class="sair">X</button>
+                    </legend>
+                    
+                    <label for="codigoCliente" class="ajuste">Código</label>
+                    <input type="text" id="codigoCliente" style="height: 4vh; width: 100%;" readonly>
+                    
+                    <label for="nomeCliente" class="ajuste">Nome</label>
+                    <input type="text" id="nomeCliente" class="inputUser" style="height: 4vh; width: 100%;">
+                    
+                    <label for="dataCliente" class="ajuste">Data de Cadastro</label>
+                    <input type="text" id="dataCliente" class="inputUser" style="height: 4vh; width: 100%;" readonly>
+
+                    <div class="flex-container">
+                        <div class="flex-item">
+                            <label for="sexoCliente" class="ajuste">Sexo</label>
+                            <input type="text" id="sexoCliente" class="inputUser" style="height: 4vh; width: 100%;" pattern="[MFmf]" title="Por favor entre M ou F">
+                        </div>
+                        <div class="flex-item">
+                            <label for="estadoCivilCliente" class="ajuste">Estado Civil</label>
+                            <select id="estadoCivilCliente" class="inputUser combo-box" style="height: 4vh; width: 100%;">
+                                <option value="solteiro(a)">Solteiro(a)</option>
+                                <option value="casado(a)">Casado(a)</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="btnAjuste botoes">
+                        <button type="button" id="antCliente" class="botao btnAnterior">&lt;</button>
+                        <button type="button" id="proxCliente" class="botao btnProximo">&gt;</button>
+                        <button type="button" id="novoCliente" class="botao btnNovo">Novo</button>
+                        <button type="button" id="salvarCliente" class="botao btnSalvar">Salvar</button>
+                    </div>                    
+                </fieldset> 
+            </form>
+            
+            <form id="formProdutos" style="display: none;">
+                <fieldset> 
+                    <legend class="topoCli">
+                        <strong class="sobrelinha">Produtos</strong>
+                        <button type="button" id="sairProdutos" class="sair">X</button>
+                    </legend>
+                    
+                    <label for="codigoProduto" class="ajuste">Código</label>
+                    <input type="text" id="codigoProduto" style="height: 4vh; width: 100%;" readonly>
+                    
+                    <label for="descricaoProduto" class="ajuste">Descrição</label>
+                    <input type="text" id="descricaoProduto" style="height: 4vh; width: 100%;">
+                    
+                    <label for="precoProduto" class="ajuste">Preço</label>
+                    <input type="number" id="precoProduto" style="height: 4vh; width: 100%;" min="0" oninput="formatarPreco(this)">
+                    
+                    <label for="quantidadeProduto" class="ajuste">Quantidade</label>
+                    <input type="number" id="quantidadeProduto" style="height: 4vh; width: 100%;">
+                    
+                    <div class="btnAjuste botoes">
+                        <button type="button" id="antProd" class="botao btnAnterior">&lt;</button>
+                        <button type="button" id="proxProd" class="botao btnProximo">&gt;</button>
+                        <button type="button" id="novoProd" class="botao btnNovo">Novo</button>
+                        <button type="button" id="salvarProd" class="botao btnSalvar">Salvar</button>
+                    </div>
+
+                </fieldset>
+            </form>
+            
+            <div id="formPedidos" class="direitaPed" style="display: none;">
+                <fieldset>
+                    <legend class="sobrelinha">
+                        <strong>Pedidos</strong>
+                        <button type="button" id="sairPedidos" class="sair">teste</button>
+                    </legend>
+                    
+                    <label for="codClientePed">Código do Cliente</label>
+                    <input type="text" id="codClientePed" class="preenchimento" style="height: 4vh; width: 100%;">
+                    
+                    <label for="nomeClientePed">Cliente</label>
+                    <input type="text" id="nomeClientePed" style="height: 4vh; width: 100%;" readonly>
+                </fieldset>
+                
+                <legend class="azul"><strong>Localizar Produtos</strong></legend>
+                
+                <form id="itensPedido" class="box">
+                    <input type="text" id="codigoPedido" style="height: 4vh; width: 5%;">
+                    <input type="text" id="buscarDesc" style="height: 4vh; width: 27%;" readonly>
+                    <input type="text" id="buscarPreco" style="height: 4vh; width: 15%;" readonly>
+                    <input type="text" id="buscarQtde" style="height: 4vh; width: 20%;">
+                    <input type="submit" id="lançarPedido" value="Lançar no Pedido" style="height: 4vh; width: 25%;">
+                </form>
+
+                <fieldset>
+                    <legend class="teste"><strong>Itens do Pedido</strong></legend>
+                    <table>
+                        <thead id="tabelaPed">
+                            <th class="moverTxt">Item</th>
+                            <th class="moverTxt">Descrição</th>
+                            <th class="moverTxt">Preço</th>
+                            <th class="moverTxt">Qtd</th>
+                            <th class="moverTxt">Sub-Total</th>
+                        </thead>
+                    </table>
+                </fieldset>
+                                                
+                <fieldset style="display: none;" id="somaTotal">
+                    <span></span>
+                    <input type="text" id="soma" style="height: 4vh; width: 60%;" readonly>
+                </fieldset>
+            </div>
+        </div>
+    </main>
+    <script src="/script/script.js" type="module"></script>
+    <script src="/script/functions.js"></script>
+</body>
+</html>

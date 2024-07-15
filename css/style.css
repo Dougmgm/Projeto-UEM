@@ -1,0 +1,48 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --fonte-padrão: Verdana, Geneva, Tahoma, sans-serif;
+    --cor-botao-entrar: rgb(3, 169, 244);
+    --cor-botao-mouse: rgb(2, 136, 209);
+    --cor-fonte-mouse: #fff;
+}
+
+fieldset{
+    border: 0;
+}
+
+form{
+    font-family: var(--fonte-padrão);
+    width: 20vw; /*adasdadad*/
+    height: 22vh;
+    padding: 1%;
+    margin: 15% 0 0 40%;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid grey;
+}
+
+#loginEntrada{
+    width: 100%;
+    margin-top: 6px;
+    border: 0;
+    background-color: var(--cor-botao-entrar);
+    cursor: pointer;
+    color: aliceblue;
+    padding: 20px;
+    font-size: 17px;
+}
+
+#loginEntrada:hover{
+    background-color: var(--cor-botao-mouse);
+    color: var(--cor-fonte-mouse);
+    padding: 20px;
+}
+
+#loginSenha{
+    margin-top: 5px;
+}

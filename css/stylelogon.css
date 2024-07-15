@@ -1,0 +1,291 @@
+*{
+    margin: 0;
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --fonte-padrao: Verdana, Geneva, Tahoma, sans-serif;
+    --cor-padrao-borda: solid rgb(224, 224, 224);
+    --cor-fundo-block: rgb(224, 224, 224);
+    --cor-fonte: white;
+}
+
+main{
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+.esquerda{
+    padding-left: 5%;
+    margin-bottom: 3%;
+    font-family: var(--fonte-padrao);
+    cursor: pointer;
+}
+
+.direita{
+    width: 85%;
+    height: 100vh;
+}
+
+#formClientes, #formProdutos {
+    padding: 2%;
+    border: var(--cor-padrao-borda);
+    margin: 100px auto;
+    width: 35%;
+    height: auto;
+}
+
+#formPedidos{
+    padding: 2%;
+    border: var(--cor-padrao-borda);
+    margin: 100px auto;
+    width: 50%;
+    height: auto;
+}
+
+
+#primeiro{
+    padding-top: 7px;
+}
+
+#primSect{
+    width: 15%;
+    border-right: var(--cor-padrao-borda);
+}
+
+.topoCli{
+    display: flex;
+    font-family: var(--fonte-padrao);
+    padding-top: 2%;
+    padding-bottom: 10%;
+}
+
+.btnAjuste{
+    display: flex;
+    padding-top: 8%;
+    justify-content: space-around;
+}
+
+
+#clientes{
+    font-size: larger;
+    margin-top: 2%;
+}
+
+.sobrelinha{
+    text-decoration: underline;
+    cursor: default;
+}
+
+.btnNovo{
+    background-color: rgb(3, 169, 244);
+    margin-left: 11%;
+    width: 25%;
+}
+
+.btnNovo:active{
+    background-color: rgb(30, 136, 229);
+
+}
+
+.btnSalvar{
+    background-color: green;
+    width: 25%;
+
+}
+
+.btnSalvar:active{
+background: rgb(27, 94, 32);
+}
+
+.btnAnterior, .btnProximo{
+    color: var(--cor-fonte);
+    background-color: blueviolet;
+    width: 13%;
+}
+
+.btnAnterior:active, .btnProximo:active{
+background-color: rgb(103, 58, 183);
+}
+#sairClientes, #sairProdutos, #sairPedidos{
+    font-size: large;
+    cursor: pointer;
+    background:none;
+    color: red;
+    font-weight: bold
+}
+
+#sairClientes{
+    margin: 1% 0 0 19vw; 
+}
+
+#sairProdutos{
+    margin: 1% 0 0 19vw;
+}
+
+#sairPedidos{
+    margin: 4% 0 0 82%;
+}
+
+input{
+    font-family: var(--fonte-padrao);
+    margin: 2% 0 2% 0;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: default;
+}
+
+.botao{
+    /* width: 24%; */
+    margin: 5px 0 5px 15px;
+    padding: 5px;
+    border-radius: 5px;
+    color: var(--cor-fonte);
+}
+
+.botao:hover{
+    cursor: pointer;
+}
+
+#btnAnterior, #btnProximo{
+    width: 14%;
+    border-radius: 5px;
+}
+
+div{
+    font-family: var(--fonte-padrao);
+}
+
+#pedidos{
+    font-size: larger;
+    margin-top: 2.5%;
+    padding-bottom: 5%;
+}
+
+.topoPed{
+    display: flex;
+}
+
+table{
+    width: 100%;
+}
+
+.submenu2{
+    display: flex;
+    justify-content: space-around;
+}
+
+.box{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 9vh;
+    padding: 1% 1% 0 1%;
+    margin-bottom: 2%;
+    background-color: rgb(207, 216, 220);
+}
+
+
+#azul, #localizar{
+    border-top: var(--cor-padrao-borda);
+    padding-bottom: 1%;
+    color: blue;
+    padding-right: 72%;
+}
+
+#azul{
+    padding-right: 76.5%;
+ }
+
+#nomeClientePed{
+    color: rgb(66, 66, 66);
+}
+
+#buscarDesc, #buscarPreco{
+    background-color: var(--cor-fundo-block);
+    color: rgb(66, 66, 66);
+}
+
+#lançarPedido:hover{
+    cursor: pointer;
+    background-color: rgb(236, 227, 227);
+}
+
+#lançarPedido:active{
+    background-color: var(--cor-fundo-block);
+}
+
+#txtDescricao, #txtItem{
+    border: 0;
+}
+
+#txtPreco{
+    margin-left: 10%;
+    border: 0;
+}
+
+#txtQtde{
+    margin-left: 5%;
+    border: 0;
+}
+
+#txtSubtotal{
+    margin-left: 6.5%;
+    border: 0; 
+}
+
+#somaTotal{
+    width: 20%;
+    margin-left: 75%;
+    background-color: var(--cor-fundo-block);
+    color: red;        
+}
+
+#soma{
+    margin-left: 5%;
+    font: var(--fonte-padrao);
+    border: 0;
+    background-color: var(--cor-fundo-block);
+    color: red;
+}
+
+.moverTxt{
+    text-align: left;
+}
+
+.flex-container {
+    display: flex;
+    gap: 10px; /* Espaço entre os itens */
+    align-items: center; /* Alinhar itens verticalmente */
+}
+
+.flex-item {
+    flex: 1; /* Ajusta a largura para que ambos os itens ocupem o mesmo espaço */
+}
+
+.ajuste {
+    display: block;
+    margin-bottom: 8px; /* Espaço entre o rótulo e o campo de entrada */
+}
+
+.inputUser {
+    height: 4vh;
+    width: 100%;
+}
+
+.inputUser {
+    height: 4vh;
+    width: 100%;
+}
+
+.combo-box {
+    border: 1px solid black; /* Borda preta */
+}
+
+.flex-item {
+    width: 48%; 
+}
