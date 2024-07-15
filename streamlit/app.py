@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import json
 
-with open('dados_pedidos.json') as f:
+with open('clientes.json') as f:
     data = json.load(f)
 
 # Converte JSON em DataFrame
