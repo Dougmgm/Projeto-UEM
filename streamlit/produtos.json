@@ -1,14 +1,56 @@
 [
   {
-    "codProduto": 1,
-    "descProduto": "Caneta esferográfica",
-    "precoProduto": 0.80,
-    "qtdEstoqueProd": 10
+    "codProduto": 3,
+    "descProduto": "Caderno espiral",
+    "precoProduto": 15.90,
+    "qtdEstoqueProd": 20
   },
   {
-    "codProduto": 2,
-    "descProduto": "Cola Print",
-    "precoProduto": 3.65,
-    "qtdEstoqueProd": 50
+    "codProduto": 4,
+    "descProduto": "Lápis HB",
+    "precoProduto": 1.25,
+    "qtdEstoqueProd": 100
+  },
+  {
+    "codProduto": 5,
+    "descProduto": "Marca-texto amarelo",
+    "precoProduto": 2.30,
+    "qtdEstoqueProd": 30
+  },
+  {
+    "codProduto": 6,
+    "descProduto": "Pasta suspensa",
+    "precoProduto": 4.00,
+    "qtdEstoqueProd": 15
+  },
+  {
+    "codProduto": 7,
+    "descProduto": "Clips metálico",
+    "precoProduto": 1.00,
+    "qtdEstoqueProd": 200
+  },
+  {
+    "codProduto": 8,
+    "descProduto": "Apontador",
+    "precoProduto": 1.75,
+    "qtdEstoqueProd": 40
+  },
+  {
+    "codProduto": 9,
+    "descProduto": "Borrachas",
+    "precoProduto": 2.50,
+    "qtdEstoqueProd": 60
+  },
+  {
+    "codProduto": 10,
+    "descProduto": "Agenda 2024",
+    "precoProduto": 20.00,
+    "qtdEstoqueProd": 25
+  },
+  {
+    "codProduto": 11,
+    "descProduto": "Régua de 30 cm",
+    "precoProduto": 3.00,
+    "qtdEstoqueProd": 35
   }
 ]
