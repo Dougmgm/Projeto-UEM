@@ -271,4 +271,17 @@ function getData() {
     }
 }
 
+document.getElementById('abrir-bi').addEventListener('click', function() {
+    var streamlitSection = document.getElementById('streamlit-section');
+    var button = document.getElementById('abrir-bi');
+
+    if (streamlitSection.style.display === 'none') {
+        streamlitSection.style.display = 'block';
+        button.textContent = 'Ocultar Análise de Dados';
+    } else {
+        streamlitSection.style.display = 'none';
+        button.textContent = 'Abrir Análise de Dados';
+    }
+});
+
 getData();
