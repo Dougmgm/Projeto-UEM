@@ -23,14 +23,13 @@
             <div id="terceiro" class="esquerda">
                 <span class="material-symbols-outlined">shopping_cart</span> Pedidos
             </div>
+            
+            <button class="esquerda" id="abrir-bi">Abrir Análise de Dados</button>
 
             <div>
-
-                <button onclick="exportarClientesParaJSON()">Exportar Clientes para JSON</button>
-    
+                <button class="esquerda" onclick="exportarClientesParaJSON()">Exportar Clientes para JSON</button>
+                <button class="esquerda" onclick="exportarProdutosParaJSON()">Exportar Produtos para JSON</button>
             </div>
-
-            <button id="abrir-bi">Abrir Análise de Dados</button>
         </section>
         
 
@@ -107,8 +106,7 @@
             <div id="formPedidos" class="direitaPed" style="display: none;">
                 <fieldset>
                     <legend class="sobrelinha">
-                        <strong>Pedidos</strong>
-                        <button type="button" id="sairPedidos" class="sair">X</button>
+                        <strong>Pedidos</strong>                        
                     </legend>
                     
                     <label for="codClientePed">Código do Cliente</label>
@@ -140,7 +138,7 @@
                         </thead>
                     </table>
 
-                    <button id="exportarPedido" type="button">Exportar Pedido</button>
+                    <button id="exportarPedido" type="button" class="esquerda">Exportar Pedido</button>
 
                 </fieldset>
                                                 
