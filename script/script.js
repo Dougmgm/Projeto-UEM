@@ -1,5 +1,21 @@
-import { clientes } from "/module/clientes.js";
-import { produtos } from "/module/produtos.js";
+let clientes = [];
+let produtos = [];
+
+fetch('/streamlit/clientes.json')
+    .then(response => response.json())
+    .then(data => {
+        clientes = data;
+        TransicaoCliente(1); // Inicia a transição dos clientes após o carregamento dos dados
+    })
+    .catch(error => console.error('Erro ao carregar o arquivo clientes.json:', error));
+
+    fetch('/streamlit/produtos.json')
+    .then(response => response.json())
+    .then(data => {
+        produtos = data;
+        TransicaoProdutos(1); // Inicia a transição dos clientes após o carregamento dos dados
+    })
+    .catch(error => console.error('Erro ao carregar o arquivo clientes.json:', error));    
 
 const botaoEsquerda = document.querySelectorAll('.esquerda');
 const botaoSair = document.querySelectorAll('.sair');
@@ -67,7 +83,7 @@ function TransicaoCliente(posicao) {
             dataCadCli: getDate()
         });
     } else if (posicao > clientes.length || posicao < 1) {
-        alert('Fim da lista');
+        console.log('Fim da lista');
     } else {
         const cliente = clientes[posicao - 1];
         setFormValues(cliente);
@@ -97,7 +113,7 @@ function TransicaoProdutos(posicao) {
             qtdEstoqueProd: ''
         });
     } else if (posicao > produtos.length || posicao < 1) {
-        alert('Fim da lista');
+        console.log('Fim da lista');
     } else {
         const produto = produtos[posicao - 1];
         setFormValues(produto);
@@ -114,7 +130,9 @@ function movCliente() {
             const novoCliente = {
                 codCliente: form[2].value,
                 nomeCliente: form[3].value,
-                dataCadCli: form[4].value
+                dataCadCli: form[4].value,
+                sexo: form[5].value,
+                estadoCivil: form[6].value
             };
             if (novoCliente.codCliente == clientes.length + 1 && novoCliente.nomeCliente) {
                 clientes.push(novoCliente);
@@ -138,8 +156,8 @@ movCliente();
 
 function movProduto() {
     const acoes = {
-        antProd: pos => TransicaoProdutos(Number(pos) - 1),
-        proxProd: pos => TransicaoProdutos(Number(pos) + 1),
+        antProd: pos => TransicaoProdutos(Number(pos) + 1),
+        proxProd: pos => TransicaoProdutos(Number(pos) - 1),
         novoProd: () => TransicaoProdutos(-1),
         salvarProd: () => {
             const form = document.forms[1];
@@ -270,5 +288,18 @@ function getData() {
         botao.addEventListener("focusout", validaProduto);
     }
 }
+
+document.getElementById('abrir-bi').addEventListener('click', function() {
+    var streamlitSection = document.getElementById('streamlit-section');
+    var button = document.getElementById('abrir-bi');
+
+    if (streamlitSection.style.display === 'none') {
+        streamlitSection.style.display = 'block';
+        button.textContent = 'Ocultar Análise de Dados';
+    } else {
+        streamlitSection.style.display = 'none';
+        button.textContent = 'Abrir Análise de Dados';
+    }
+});
 
 getData();

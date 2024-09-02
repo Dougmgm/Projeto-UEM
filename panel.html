@@ -29,6 +29,8 @@
                 <button onclick="exportarClientesParaJSON()">Exportar Clientes para JSON</button>
     
             </div>
+
+            <button id="abrir-bi">Abrir Análise de Dados</button>
         </section>
         
 
@@ -137,6 +139,9 @@
                             <th class="moverTxt">Sub-Total</th>
                         </thead>
                     </table>
+
+                    <button id="exportarPedido" type="button">Exportar Pedido</button>
+
                 </fieldset>
                                                 
                 <fieldset style="display: none;" id="somaTotal">
@@ -145,14 +150,14 @@
                 </fieldset>
             </div>
 
-            <!--div id="streamlit-section" >
+            <div id="streamlit-section" style="display: none;">
                 <fieldset>
-                    <legend class="sobrelinha" style="display: none;">
-                        <strong>Analytics</strong>
+                    <legend class="sobrelinha">
+                        <strong>Análise de dados</strong>
                     </legend>
                     <iframe src="http://localhost:8501" style="border: none; width: 100%; height: 800px;"></iframe>
                 </fieldset>
-            </div-->
+            </div>                    
             
         </div>
     </main>

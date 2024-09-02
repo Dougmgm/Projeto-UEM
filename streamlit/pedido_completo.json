@@ -1,0 +1,37 @@
+{
+  "cliente": {
+    "codigo": "9",
+    "nome": "Selina Kyle"
+  },
+  "itens": [
+    {
+      "codProduto": "1",
+      "descProduto": "Caderno espiral",
+      "precoProduto": "15.90",
+      "qtdEstoqueProd": "1",
+      "subtotal": "15.90"
+    },
+    {
+      "codProduto": "2",
+      "descProduto": "Lápis HB",
+      "precoProduto": "1.25",
+      "qtdEstoqueProd": "3",
+      "subtotal": "3.75"
+    },
+    {
+      "codProduto": "7",
+      "descProduto": "Borrachas",
+      "precoProduto": "2.50",
+      "qtdEstoqueProd": "3",
+      "subtotal": "7.50"
+    },
+    {
+      "codProduto": "2",
+      "descProduto": "Lápis HB",
+      "precoProduto": "1.25",
+      "qtdEstoqueProd": "5",
+      "subtotal": "6.25"
+    }
+  ],
+  "total": "R$ 33.40"
+}

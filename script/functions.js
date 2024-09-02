@@ -55,6 +55,64 @@ function atualizarTabela() {
     }
 }
 
+function exportarTabelaParaJSON() {
+    const clienteCodigo = document.getElementById('codClientePed').value;
+    const clienteNome = document.getElementById('nomeClientePed').value;
+    
+    if (!clienteCodigo || !clienteNome) {
+        alert('Favor preencher os dados do cliente antes de exportar.');
+        return;
+    }
 
+    const tbody = document.getElementById('tabelaPed').getElementsByTagName('tr');
+    const pedidoExportado = [];
+    let totalPedido = 0;
 
+    for (let i = 0; i < tbody.length; i++) {
+        const cells = tbody[i].getElementsByTagName('td');
+        if (cells.length === 0) continue; // Pula linhas sem células
+
+        const itemPedido = {
+            codProduto: cells[0].innerText,
+            descProduto: cells[1].innerText,
+            precoProduto: cells[2].innerText,
+            qtdEstoqueProd: cells[3].innerText,
+            subtotal: cells[4].innerText.replace('R$ ', '')
+        };
+        pedidoExportado.push(itemPedido);
+
+        // Adiciona o subtotal ao total do pedido
+        totalPedido += parseFloat(itemPedido.subtotal);
+    }
+
+    if (pedidoExportado.length === 0) {
+        alert('Nenhum item no pedido para exportar.');
+        return;
+    }
+
+    const pedidoCompleto = {
+        cliente: {
+            codigo: clienteCodigo,
+            nome: clienteNome
+        },
+        itens: pedidoExportado,
+        total: `R$ ${totalPedido.toFixed(2)}`
+    };
+
+    const jsonPedido = JSON.stringify(pedidoCompleto, null, 2);
+    const blob = new Blob([jsonPedido], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'pedido_completo.json'; 
+    a.click();
+
+    URL.revokeObjectURL(url);
+}
+
+// Vincular a função ao botão de exportação
+document.getElementById('exportarPedido').addEventListener('click', exportarTabelaParaJSON);
+
+// Vincular a função de adicionar item ao formulário
 formPedido.addEventListener('submit', adicionarItemPedido);
