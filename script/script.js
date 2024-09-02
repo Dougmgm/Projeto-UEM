@@ -5,7 +5,7 @@ fetch('/streamlit/clientes.json')
     .then(response => response.json())
     .then(data => {
         clientes = data;
-        TransicaoCliente(1); // Inicia a transição dos clientes após o carregamento dos dados
+        TransicaoCliente(1); 
     })
     .catch(error => console.error('Erro ao carregar o arquivo clientes.json:', error));
 
@@ -13,7 +13,7 @@ fetch('/streamlit/clientes.json')
     .then(response => response.json())
     .then(data => {
         produtos = data;
-        TransicaoProdutos(1); // Inicia a transição dos clientes após o carregamento dos dados
+        TransicaoProdutos(1); 
     })
     .catch(error => console.error('Erro ao carregar o arquivo clientes.json:', error));    
 
@@ -240,6 +240,8 @@ function validaProduto() {
     }
 }
 
+
+
 const quantidadeProduto = document.getElementById('quantidadeProduto');
 
 quantidadeProduto.addEventListener('input', function() {
@@ -259,27 +261,40 @@ document.getElementById('sexoCliente').addEventListener('input', function() {
 });
 
 function exportarClientesParaJSON() {
-    // Converte o array de clientes para JSON
+
     let jsonClientes = JSON.stringify(clientes, null, 2);
 
-    // Cria um objeto Blob contendo o JSON
     let blob = new Blob([jsonClientes], { type: 'application/json' });
 
-    // Cria um URL para o Blob
     let url = URL.createObjectURL(blob);
 
-    // Cria um link para fazer o download do arquivo
     let a = document.createElement('a');
     a.href = url;
-    a.download = 'clientes.json'; // Nome do arquivo para download
+    a.download = 'clientes.json'; 
     a.click();
 
-    // Libera o objeto Blob
     URL.revokeObjectURL(url);
 }
 
-// Certifique-se de que a função está disponível no escopo global se for chamada diretamente do HTML
+function exportarProdutosParaJSON() {
+    
+    let jsonProdutos = JSON.stringify(produtos, null, 2);
+
+    let blob = new Blob([jsonProdutos], { type: 'application/json' });
+
+    let url = URL.createObjectURL(blob);
+
+    let a = document.createElement('a');
+    a.href = url;
+    a.download = 'produtos.json';
+    a.click();
+
+    URL.revokeObjectURL(url);
+}
+
 window.exportarClientesParaJSON = exportarClientesParaJSON;
+
+window.exportarProdutosParaJSON = exportarProdutosParaJSON;
 
 
 function getData() {
@@ -293,13 +308,21 @@ document.getElementById('abrir-bi').addEventListener('click', function() {
     var streamlitSection = document.getElementById('streamlit-section');
     var button = document.getElementById('abrir-bi');
 
+    var formClientes = document.getElementById('formClientes');
+    var formPedidos = document.getElementById('formPedidos');
+    var formProdutos = document.getElementById('formProdutos');
+
     if (streamlitSection.style.display === 'none') {
         streamlitSection.style.display = 'block';
         button.textContent = 'Ocultar Análise de Dados';
+
+        formClientes.style.display = 'none';
+        formPedidos.style.display = 'none';
+        formProdutos.style.display = 'none';
     } else {
         streamlitSection.style.display = 'none';
         button.textContent = 'Abrir Análise de Dados';
     }
-});
+}); 
 
 getData();

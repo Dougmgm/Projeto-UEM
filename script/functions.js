@@ -70,7 +70,7 @@ function exportarTabelaParaJSON() {
 
     for (let i = 0; i < tbody.length; i++) {
         const cells = tbody[i].getElementsByTagName('td');
-        if (cells.length === 0) continue; // Pula linhas sem células
+        if (cells.length === 0) continue;
 
         const itemPedido = {
             codProduto: cells[0].innerText,
@@ -81,7 +81,6 @@ function exportarTabelaParaJSON() {
         };
         pedidoExportado.push(itemPedido);
 
-        // Adiciona o subtotal ao total do pedido
         totalPedido += parseFloat(itemPedido.subtotal);
     }
 
@@ -111,8 +110,6 @@ function exportarTabelaParaJSON() {
     URL.revokeObjectURL(url);
 }
 
-// Vincular a função ao botão de exportação
 document.getElementById('exportarPedido').addEventListener('click', exportarTabelaParaJSON);
 
-// Vincular a função de adicionar item ao formulário
 formPedido.addEventListener('submit', adicionarItemPedido);

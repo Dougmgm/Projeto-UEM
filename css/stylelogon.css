@@ -23,6 +23,7 @@ main{
     margin-bottom: 3%;
     font-family: var(--fonte-padrao);
     cursor: pointer;
+    background-color: transparent;
 }
 
 .direita{
