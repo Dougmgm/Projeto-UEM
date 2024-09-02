@@ -10,41 +10,48 @@ with open('clientes.json') as f:
 with open('produtos.json') as f:
     produtos_data = json.load(f)
 
+with open('pedido_completo.json') as f:
+    pedido_data = json.load(f)
+
 # Converter JSONs em DataFrames
 clientes_df = pd.DataFrame(clientes_data)
 produtos_df = pd.DataFrame(produtos_data)
+pedido_df = pd.DataFrame(pedido_data['itens'])  # O JSON de pedidos tem uma estrutura diferente
 
 # Inicializar as variáveis de estado para controlar a visibilidade de cada análise
 if 'mostrar_analise' not in st.session_state:
     st.session_state.mostrar_analise = None  # Nenhuma análise exibida inicialmente
 
-# Inicializar a variável de estado para controlar a visibilidade dos botões
 if 'mostrar_botoes' not in st.session_state:
     st.session_state.mostrar_botoes = False  # Botões ocultos inicialmente
 
-# Inicializar a variável de estado para controlar a visibilidade dos botões de produto
 if 'mostrar_botoes_produtos' not in st.session_state:
     st.session_state.mostrar_botoes_produtos = False  # Botões de produtos ocultos inicialmente
 
-# Inicializar a variável de estado para a análise de produtos
 if 'mostrar_analise_produtos' not in st.session_state:
     st.session_state.mostrar_analise_produtos = None  # Nenhuma análise de produtos exibida inicialmente
+
+if 'mostrar_botoes_customizada' not in st.session_state:
+    st.session_state.mostrar_botoes_customizada = False  # Botões de análise customizada ocultos inicialmente
 
 # Funções para exibir uma análise e ocultar as outras
 def mostrar_analise(analise):
     st.session_state.mostrar_analise = analise
 
-# Função para alternar a visibilidade dos botões
 def alternar_botoes():
     st.session_state.mostrar_botoes = not st.session_state.mostrar_botoes
     if not st.session_state.mostrar_botoes:
         st.session_state.mostrar_analise = None  # Ocultar gráficos quando os botões são ocultados
 
-# Função para alternar a visibilidade dos botões de produtos
 def alternar_botoes_produtos():
     st.session_state.mostrar_botoes_produtos = not st.session_state.mostrar_botoes_produtos
     if not st.session_state.mostrar_botoes_produtos:
         st.session_state.mostrar_analise_produtos = None  # Ocultar gráficos de produtos quando os botões são ocultados
+
+def alternar_botoes_customizada():
+    st.session_state.mostrar_botoes_customizada = not st.session_state.mostrar_botoes_customizada
+    if not st.session_state.mostrar_botoes_customizada:
+        st.session_state.mostrar_analise_customizada = None  # Ocultar gráficos de análise customizada quando os botões são ocultados
 
 # Botão para exibir/ocultar os botões de análise
 if st.button("Clientes"):
@@ -53,6 +60,10 @@ if st.button("Clientes"):
 # Botão para exibir/ocultar os botões de produtos
 if st.button("Produtos"):
     alternar_botoes_produtos()
+
+# Botão para exibir/ocultar os botões de análise customizada
+if st.button("Análise Customizada"):
+    alternar_botoes_customizada()
 
 # Condicional para mostrar/ocultar os botões de análise
 if st.session_state.mostrar_botoes:
@@ -139,3 +150,48 @@ elif st.session_state.mostrar_botoes_produtos and st.session_state.mostrar_anali
     ax.set_ylabel('Quantidade em Estoque')
     ax.tick_params(axis='x', rotation=45)
     st.pyplot(fig)
+
+# Condicional para mostrar/ocultar os botões de análise customizada
+if st.session_state.mostrar_botoes_customizada:
+    st.subheader("Selecione os dados para análise customizada")
+    eixo_x = st.selectbox("Eixo X", options=[
+        'codigo', 'nome', 'sexo', 'estadoCivil',
+        'codProduto', 'descProduto', 'precoProduto', 'qtdEstoqueProd',
+        'descProduto', 'qtdEstoqueProd', 'subtotal'
+    ])
+    eixo_y = st.selectbox("Eixo Y", options=[
+        'codigo', 'nome', 'sexo', 'estadoCivil',
+        'codProduto', 'descProduto', 'precoProduto', 'qtdEstoqueProd',
+        'descProduto', 'qtdEstoqueProd', 'subtotal'
+    ])
+
+    # Inicializar as variáveis para os dados dos eixos
+    eixo_x_data = []
+    eixo_y_data = []
+
+    # Preparar dados para os eixos
+    if eixo_x in clientes_df.columns:
+        eixo_x_data = clientes_df[eixo_x].values
+    elif eixo_x in produtos_df.columns:
+        eixo_x_data = produtos_df[eixo_x].values
+    elif eixo_x in pedido_df.columns:
+        eixo_x_data = pedido_df[eixo_x].values
+
+    if eixo_y in clientes_df.columns:
+        eixo_y_data = clientes_df[eixo_y].values
+    elif eixo_y in produtos_df.columns:
+        eixo_y_data = produtos_df[eixo_y].values
+    elif eixo_y in pedido_df.columns:
+        eixo_y_data = pedido_df[eixo_y].values
+
+    # Verificar se os tamanhos dos eixos são iguais e se os dados existem
+    if len(eixo_x_data) > 0 and len(eixo_y_data) > 0 and len(eixo_x_data) == len(eixo_y_data):
+        # Exibir gráfico
+        fig, ax = plt.subplots()
+        ax.scatter(eixo_x_data, eixo_y_data)
+        ax.set_xlabel(eixo_x)
+        ax.set_ylabel(eixo_y)
+        ax.set_title(f'Análise Customizada: {eixo_x} vs {eixo_y}')
+        st.pyplot(fig)
+    else:
+        st.error("Os dados selecionados para os eixos X e Y não têm o mesmo tamanho ou não foram encontrados.")
